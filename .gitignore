@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+src/assets/drawing.svg
+src/assets/DTLA.jpeg
+src/assets/ELYSIAN_PARK.PNG
+src/assets/flatiron.jpg
+src/assets/LA_PALM_TREES.SVG
+src/assets/LG_LA_PALM_TREES.PNG
+src/assets/LOS_ANGELES.SVG
+src/assets/los-angeles-skyline-palm-trees-wallpaper-2.jpeg
+src/assets/MED_LA_PALM_TREES.png
+src/assets/PALM_TREES.png
+src/assets/SM_LA_PALM_TREES.png

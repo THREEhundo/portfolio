@@ -13,6 +13,9 @@ function App() {
       <About />
       <Work />
       <Footer />
+      <div>
+        <p></p>
+      </div>
     </div>
   );
 }
