@@ -10,6 +10,7 @@ export const About = () => {
         </div>
         <div>
             <h2>NYC ➡️ LA</h2>
+            
             <p>I am one of the many people that reflected on and reevaluated the trajectory of my life during the pandemic. I decided to take a leap of faith and head out west with clear eyes and a full heart.</p>
             <p>I create mobile-first web apps as a full time freelance <b>Web Developer</b>. Clean lines and purposeful products are where my passions lie.</p>
         </div>
