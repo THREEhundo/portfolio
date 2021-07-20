@@ -1,4 +1,5 @@
 import './App.css';
+import '@fontsource/roboto';
 import { About } from './components/About';
 import Footer from './components/Footer';
 import { Header } from './components/Header';
