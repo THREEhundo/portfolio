@@ -7,11 +7,9 @@ export const Header = () => {
            Sammy Baik
         </h1>
            <h2>
-               Links
-               <p>About</p>
-               <p>Work</p>
-               <p>Resume</p>
-               <p>Contact</p>
+               <button><a href="#about">About</a></button>
+               <button><a href="#work">Work</a></button>
+               <button><a href="#contact">Contact</a></button>
            </h2> 
         </div>
     )

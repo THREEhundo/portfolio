@@ -7,12 +7,12 @@ import { Work } from './components/Work';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Header className="App-header">
         {/* <Header /> */}
-      </header>
-      <About />
-      {/* <Work /> */}
-      <Footer />
+      </Header>
+      <About id="about" />
+      <Work id="work" />
+      <Footer id="footer" />
       <div>
         <p></p>
       </div>
