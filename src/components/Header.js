@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PortfolioMenu from "./PortfolioMenu";
-import { Grid, Icon, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { loadCSS } from "fg-loadcss";
 
@@ -29,29 +29,6 @@ export const Header = () => {
       </Typography>
 
       <PortfolioMenu />
-
-      <Icon
-        className="fas fa-angle-left"
-        color="primary"
-        style={{ fontSize: "3.25rem" }}
-      />
-
-      <Grid
-        container
-        direction="column"
-        justifyContent="space-evenly"
-        alignItems="flex-end"
-      >
-        <Typography variant="h2" align="right" gutterBottom>
-          <Link to="/about">About</Link>
-        </Typography>
-        <Typography variant="h2" align="right" gutterBottom>
-          <Link to="/work">Work</Link>
-        </Typography>
-        <Typography variant="h2" align="right" gutterBottom>
-          <Link to="/contact">Contact</Link>
-        </Typography>
-      </Grid>
     </Grid>
   );
 };

@@ -20,9 +20,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
+      "Tropical",
       "Don Graffiti",
       "Botanical",
-      "Tropical",
       "Muller",
       "Arkhip",
       "Maghfirea",
@@ -89,6 +89,11 @@ theme.overrides = {
     root: {
       fontSize: "200px",
       textDecoration: "none",
+    },
+  },
+  MuiListItem: {
+    root: {
+      justifyContent: "center",
     },
   },
 };

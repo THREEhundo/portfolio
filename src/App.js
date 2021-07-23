@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import theme from "./styles/themes";
 import { Container, Button, CssBaseline } from "@material-ui/core";
@@ -9,23 +9,16 @@ import { Header } from "./components/Header";
 import { Work } from "./components/Work";
 import { ContactEmail } from "./components/ContactEmail";
 
-// TODO [] Put Home Link in Header
-// TODO [] Apply Grid to Header
+// TODO [✅] Put Home Link in Header
+// TODO [✅] Apply Grid to Header
+// TODO [] Style Menu
 
 function App() {
-  console.log(theme.typography);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
         <Container fixed>
-          {/* <Container>
-            <Typography variant="h1" component="body1">
-              <Link to="/" color="primary" underline="none">
-                SB
-              </Link>
-            </Typography>
-          </Container> */}
           <Header />
           <Switch>
             <Route exact path="/about">

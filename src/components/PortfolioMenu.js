@@ -7,23 +7,30 @@ import {
   MenuItem,
   withStyles,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid white",
-  },
+const StyledMenu = withStyles((theme) => {
+  return {
+    paper: {
+      height: "100%",
+      width: "100%",
+      maxHeight: "calc(100% - 20px)",
+      border: `1px solid ${theme.palette.secondary.main}`,
+      textAlign: "center",
+    },
+  };
 })(
   forwardRef((props, ref) => (
     <Menu
       ref={ref}
       getContentAnchorEl={null}
       anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "center",
+        vertical: "top",
+        horizontal: "right",
       }}
       transformOrigin={{
         vertical: "top",
-        horizontal: "center",
+        horizontal: "left",
       }}
       {...props}
     />
@@ -51,6 +58,7 @@ const StyledMenuItem = withStyles((theme) => {
 
 const PortfolioMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const menuRef = useRef();
 
   const handleClick = () => {
     menuRef.current.focus();
@@ -60,8 +68,6 @@ const PortfolioMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const menuRef = useRef();
 
   return (
     <div>
@@ -82,18 +88,31 @@ const PortfolioMenu = () => {
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <ListItem button>
-            <ListItemText primary="About" />
+          <ListItem button divider>
+            <Link to="/">
+              <ListItemText primary="Home" />
+            </Link>
           </ListItem>
         </StyledMenuItem>
         <StyledMenuItem>
-          <ListItem button>
-            <ListItemText primary="Work" />
+          <ListItem button divider>
+            <Link to="/about">
+              <ListItemText primary="About" />
+            </Link>
           </ListItem>
         </StyledMenuItem>
         <StyledMenuItem>
-          <ListItem button>
-            <ListItemText primary="Contact" />
+          <ListItem button divider>
+            <Link to="/work">
+              <ListItemText primary="Work" />
+            </Link>
+          </ListItem>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <ListItem button divider>
+            <Link to="/contact">
+              <ListItemText primary="Contact" />
+            </Link>
           </ListItem>
         </StyledMenuItem>
       </StyledMenu>
