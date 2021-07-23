@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Views/Navbar";
 import { Link } from "react-router-dom";
 import { loadCSS } from "fg-loadcss";
 
