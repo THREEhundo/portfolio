@@ -22,3 +22,149 @@ code {
   min-height: 100vh;
   background-color: black;
 }
+
+@font-face {
+  font-family: "Yeager";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/YeagerWebkit/yeager-regular-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/YeagerWebkit/yeager-regular-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Arkhip";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/arkhip_font-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/arkhip_font-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Adam";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/adam.cg_pro-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/adam.cg_pro-webfont.woff2");
+}
+
+@font-face {
+  font-family: "SkyScrapers";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/skyscrapers-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/skyscrapers-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Colus";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/colus-regular-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/colus-regular-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Facon";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/facon-webfont.woff") format("woff");
+  src: url("./assets/fonts/webfontkit-1/facon-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Maghfirea";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/maghfirea-webfont.woff") format("woff");
+  src: url("./assets/fonts/webfontkit-1/maghfirea-webfont.woff2");
+}
+
+@font-face {
+  font-family: "KensmarkBold";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/kensmark-03-bold-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/kensmark-03-bold-webfont.woff2");
+}
+
+@font-face {
+  font-family: "KensmarkSlant";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/kensmark-03-boldslant-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/kensmark-03-boldslant-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Bebasneue";
+  font-style: regular;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/webfontkit-1/bebasneue-regular-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/webfontkit-1/bebasneue-regular-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Muller";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./assets/fonts/mueller-webfontkit/mullerdemo-extrabold-webfont.woff")
+    format("woff");
+}
+
+@font-face {
+  font-family: "Muller";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("./assets/fonts/mueller-webfontkit/mullerdemo-thin-webfont.woff")
+    format("woff");
+}
+
+@font-face {
+  font-family: "Don Graffiti";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/don-graffiti-webfontkit/dongraffiti-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/don-graffiti-webfontkit/dongraffiti-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Tropical";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/tropical-webfontkit/tropikal-bold-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/tropical-webfontkit/tropikal-bold-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Botanical";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/botanical-webfontkit/botanic_personal_use-webfont.woff")
+    format("woff");
+  src: url("./assets/fonts/botanical-webfontkit/botanic_personal_use-webfont.woff2");
+}

@@ -20,10 +20,23 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
-      "Superion",
-      "Yeager",
-      "RoadRage",
+      "Don Graffiti",
+      "Botanical",
+      "Tropical",
+      "Muller",
+      "Arkhip",
+      "Maghfirea",
+      "Facon",
+      "Colus",
+      "Bebasneue",
+      "KensmarkSlant",
+      "KensmarkBold",
+      "Adam",
       "SkyScrapers",
+      "Yeager",
+      "Superion",
+      "YeagerLight",
+      "RoadRage",
       '"Segoe UI"',
       "Roboto",
       '"Helvetica Neue"',
@@ -50,10 +63,8 @@ theme.overrides = {
     root: {
       padding: "1rem",
       height: "100%",
+      width: "100%",
       backgroundColor: theme.palette.background.default,
-    },
-    maxWidthXs: {
-      height: "100%",
     },
     fixed: {
       minHeight: "100vh",
@@ -69,6 +80,9 @@ theme.overrides = {
       color: theme.palette.primary.main,
       textDecoration: "none",
       padding: "1rem",
+    },
+    gutterBottom: {
+      marginBottom: 16,
     },
   },
   MuiLink: {
