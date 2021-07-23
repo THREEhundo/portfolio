@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PortfolioMenu from "./PortfolioMenu";
 import { Grid, Icon, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { loadCSS } from "fg-loadcss";
@@ -26,6 +27,8 @@ export const Header = () => {
           SB
         </Link>
       </Typography>
+
+      <PortfolioMenu />
 
       <Icon
         className="fas fa-angle-left"
