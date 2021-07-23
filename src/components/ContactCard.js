@@ -1,4 +1,3 @@
-import { Container } from "@material-ui/core";
 import React from "react";
 
 // TODO [] Create card
@@ -7,5 +6,5 @@ import React from "react";
 // TODO [] Create Resume Icon
 
 export const Contact = () => {
-  return <Container></Container>;
+  return <div></div>;
 };

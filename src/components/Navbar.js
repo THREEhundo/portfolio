@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-const PortfolioMenu = () => {
+const Navbar = () => {
+  // eslint-disable-next-line
   const [anchorEl, setAnchorEl] = useState(null);
   const menuRef = useRef();
 
@@ -49,4 +50,4 @@ const PortfolioMenu = () => {
   );
 };
 
-export default PortfolioMenu;
+export default Navbar;

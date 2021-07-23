@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import PortfolioMenu from "./PortfolioMenu";
-import { Grid, Typography } from "@material-ui/core";
+import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { loadCSS } from "fg-loadcss";
 
@@ -16,19 +15,19 @@ export const Header = () => {
   }, []);
 
   return (
-    <Grid
+    <div
       container
       direction="row"
       justifyContent="space-between"
       alignItems="center"
     >
-      <Typography variant="h1" gutterBottom>
+      <h1>
         <Link to="/" color="primary" underline="none">
           SB
         </Link>
-      </Typography>
+      </h1>
 
-      <PortfolioMenu />
-    </Grid>
+      <Navbar />
+    </div>
   );
 };
