@@ -1,60 +1,5 @@
-import React, { forwardRef, useRef, useState } from "react";
-import {
-  Icon,
-  ListItem,
-  ListItemText,
-  Menu,
-  MenuItem,
-  withStyles,
-} from "@material-ui/core";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-
-const StyledMenu = withStyles((theme) => {
-  return {
-    paper: {
-      height: "100%",
-      width: "100%",
-      maxHeight: "calc(100% - 20px)",
-      border: `1px solid ${theme.palette.secondary.main}`,
-      textAlign: "center",
-    },
-  };
-})(
-  forwardRef((props, ref) => (
-    <Menu
-      ref={ref}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-      {...props}
-    />
-  ))
-);
-
-const StyledMenuItem = withStyles((theme) => {
-  return {
-    root: {
-      "&:focus": {
-        backgroundColor: theme.palette.primary.main,
-        "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-          color: theme.palette.secondary.main,
-        },
-      },
-      "&:hover": {
-        backgroundColor: theme.palette.secondary.main,
-        "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-          color: theme.palette.primary.contrastText,
-        },
-      },
-    },
-  };
-})(MenuItem);
 
 const PortfolioMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -70,53 +15,37 @@ const PortfolioMenu = () => {
   };
 
   return (
-    <div>
-      <Icon
+    <navbar>
+      {/* Menu Icon */}
+      <svg
         aria-controls="menu"
         aria-haspopup="true"
-        className="fas fa-angle-left"
-        color="primary"
         style={{ fontSize: "3.25rem" }}
         onClick={handleClick}
       />
-      <StyledMenu
-        id="menu"
-        ref={menuRef}
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <StyledMenuItem>
-          <ListItem button divider>
-            <Link to="/">
-              <ListItemText primary="Home" />
-            </Link>
-          </ListItem>
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItem button divider>
-            <Link to="/about">
-              <ListItemText primary="About" />
-            </Link>
-          </ListItem>
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItem button divider>
-            <Link to="/work">
-              <ListItemText primary="Work" />
-            </Link>
-          </ListItem>
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItem button divider>
-            <Link to="/contact">
-              <ListItemText primary="Contact" />
-            </Link>
-          </ListItem>
-        </StyledMenuItem>
-      </StyledMenu>
-    </div>
+      <ul id="navbarList" ref={menuRef} onClose={handleClose}>
+        <li>
+          <Link to="/">
+            <span>Home</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/about">
+            <span>About</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/work">
+            <span>Work</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact">
+            <span>Contact</span>
+          </Link>
+        </li>
+      </ul>
+    </navbar>
   );
 };
 

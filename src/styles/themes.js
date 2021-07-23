@@ -1,6 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
-
-const theme = createTheme({
+const theme = {
   type: "dark",
   palette: {
     type: "dark",
@@ -46,55 +44,6 @@ const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
-  },
-});
-
-theme.props = {
-  MuiButton: {
-    disableElevation: true,
-  },
-  MuiContainer: {
-    maxWidth: "xl",
-  },
-};
-
-theme.overrides = {
-  MuiContainer: {
-    root: {
-      padding: "1rem",
-      height: "100%",
-      width: "100%",
-      backgroundColor: theme.palette.background.default,
-    },
-    fixed: {
-      minHeight: "100vh",
-    },
-  },
-  MuiPaper: {
-    root: {
-      height: "100%",
-    },
-  },
-  MuiTypography: {
-    root: {
-      color: theme.palette.primary.main,
-      textDecoration: "none",
-      padding: "1rem",
-    },
-    gutterBottom: {
-      marginBottom: 16,
-    },
-  },
-  MuiLink: {
-    root: {
-      fontSize: "200px",
-      textDecoration: "none",
-    },
-  },
-  MuiListItem: {
-    root: {
-      justifyContent: "center",
-    },
   },
 };
 
