@@ -50,11 +50,9 @@ const theme = {
   },
 };
 
-// TODO [] List All Variants
-
 const Container = styled.div`
-  width: 100%;
   background-color: ${theme.backgroundColor.default};
+  color: ${theme.primary.dark};
 `;
 
 const Button = styled.button`
@@ -64,10 +62,26 @@ const Button = styled.button`
 `;
 
 const H1 = styled.h1`
-  font-family: "Superion";
+  font-family: "KensmarkBold";
   color: ${theme.primary.main};
   width: max-content;
   font-size: ${theme.fontSize.xl};
+`;
+
+const Nav = styled.nav`
+  margin-left: auto;
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const Ul = styled.ul`
+  display: ${(props) => (props.hide ? "flex" : "none")};
+  flex-flow: column nowrap;
+  padding: 0;
+`;
+
+const Li = styled.li`
+  list-style: none;
 `;
 
 const invertedTheme = ({ primary, secondary }) => ({
@@ -75,4 +89,4 @@ const invertedTheme = ({ primary, secondary }) => ({
   secondary: primary,
 });
 
-export { Container, H1, theme, Button, invertedTheme };
+export { Container, H1, theme, Button, Nav, Ul, Li, invertedTheme };

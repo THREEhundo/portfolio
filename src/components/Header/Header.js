@@ -8,6 +8,8 @@ const NavContainer = styled(Container)`
   display: flex;
   flex-flow: row nowrap;
   height: auto;
+  align-items: baseline;
+  padding: 0 1.5rem;
 `;
 
 export const Header = () => {

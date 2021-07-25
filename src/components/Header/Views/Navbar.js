@@ -1,52 +1,57 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { IoCubeSharp } from "react-icons/io5";
+// import styled from "styled-components/macro";
+import { theme, Nav, Ul, Li } from "../../../View/theme";
+
+const options = ["Home", "About", "Work", "Contact"];
+
+const menuListItems = ({ handleClose }) =>
+  options.map((option, index, { handleClose }) => {
+    let linkName;
+    option === "Home" ? (linkName = "") : (linkName = option);
+    return (
+      <Li key={index}>
+        <Link to={`/${linkName}`}>
+          <span onClick={() => handleClose()}>{option}</span>
+        </Link>
+      </Li>
+    );
+  });
+
+const UnorderedList = ({ hide, handleClose }) => (
+  <Ul id="navbarList" hide={hide}>
+    {menuListItems(handleClose)}
+  </Ul>
+);
 
 const Navbar = () => {
   // eslint-disable-next-line
-  const [anchorEl, setAnchorEl] = useState(null);
-  const menuRef = useRef();
+  const [hide, setHide] = useState(false);
 
-  const handleClick = () => {
-    menuRef.current.focus();
-    setAnchorEl(menuRef.current);
-  };
+  // eslint-disable-next-line
+  const handleClick = () => setHide(!hide);
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setHide(false);
+    console.log(`handle close`);
   };
 
   return (
-    <nav>
-      {/* Menu Icon */}
-      <svg
-        aria-controls="menu"
-        aria-haspopup="true"
-        style={{ fontSize: "3.25rem" }}
-        onClick={handleClick}
+    <Nav>
+      <IoCubeSharp
+        style={{
+          width: "3rem",
+          height: "3rem",
+          color: theme.primary.main,
+          stroke: theme.color.white,
+          strokeWidth: 20,
+          marginLeft: "auto",
+        }}
+        onClick={() => handleClick()}
       />
-      <ul id="navbarList" ref={menuRef} onClose={handleClose}>
-        <li>
-          <Link to="/">
-            <span>Home</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/about">
-            <span>About</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/work">
-            <span>Work</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact">
-            <span>Contact</span>
-          </Link>
-        </li>
-      </ul>
-    </nav>
+      <UnorderedList hide={hide} handleClose={handleClose} />
+    </Nav>
   );
 };
 

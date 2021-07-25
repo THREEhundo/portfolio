@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { theme, Button, Container } from "./View/theme";
-import styled, { ThemeProvider } from "styled-components/macro";
+import { theme, Container } from "./View/theme";
+import { ThemeProvider } from "styled-components/macro";
 import { About } from "./View/About/About";
 import { Header } from "./components/Header/Header";
 import { Work } from "./View/Work/Work";
@@ -10,12 +10,12 @@ import logo from "./assets/logo.svg";
 // ✅
 // TODO [✅] Install Styled-Components
 // TODO [✅] Reorganize file structure
-// TODO [] Setup Styled-Components Theme
-//  TODO [] backgroundColor
-//  TODO [] font size
-//  TODO [] color
-//  TODO [] width
-//  TODO [] height
+// TODO [✅] Setup Styled-Components Theme
+//  TODO [✅] backgroundColor
+//  TODO [✅] font size
+//  TODO [✅] color
+//  TODO [✅] width
+//  TODO [✅] height
 
 // TODO [] Setup Splash page
 // TODO [] Style Navbar
