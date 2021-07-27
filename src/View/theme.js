@@ -73,13 +73,16 @@ const Nav = styled.nav`
   flex-flow: column nowrap;
 `;
 
-const Ul = styled.ul`
-  display: ${(props) => (props.show ? "flex" : "none")};
+const NavBlocks = styled.div`
+  visibility: ${(props) => (props.show ? "inherit" : "hidden")};
   flex-flow: column wrap;
   padding: 0;
+  width: 100%;
+  position: relative;
+  height: 100vh;
 `;
 
-const Li = styled.li`
+const Li = styled.div`
   list-style: none;
 `;
 
@@ -88,4 +91,4 @@ const invertedTheme = ({ primary, secondary }) => ({
   secondary: primary,
 });
 
-export { Container, H1, theme, Button, Nav, Ul, Li, invertedTheme };
+export { Container, H1, theme, Button, Nav, NavBlocks, Li, invertedTheme };

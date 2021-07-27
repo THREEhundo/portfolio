@@ -1,7 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { IoCubeSharp } from "react-icons/io5";
-import { Li, theme, Nav, Ul, Container } from "../../../View/theme";
+import React, { useState } from "react";
+import { theme, Nav, Container } from "../../../View/theme";
 import ListItems from "./ListItems";
 import styled from "styled-components";
 
@@ -9,8 +7,6 @@ const Navigator = styled(Nav)`
   background-color: transparent;
   position: fixed;
   z-index: 10;
-  height: 3rem;
-  width: 3rem;
   top: 50px;
   right: 20px;
 `;
@@ -103,18 +99,13 @@ const NavSpan = styled.span`
   height: 1px;
   background: ${theme.primary.main};
 `;
+
 const NavX = styled(NavSpan)`
   transform: ${(props) => (props.left ? `rotate(45deg)` : `rotate(-45deg)`)};
   position: absolute;
 `;
 
-const Navbar = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClick = () => setShow(!show);
-
-  const handleClose = () => setShow(false);
-
+const Navbar = ({ show, handleClick }) => {
   return (
     <Navigator>
       <NavbarContainer onClick={() => handleClick()}>
@@ -128,7 +119,9 @@ const Navbar = () => {
           <NavX />
         </NavClose>
       </NavbarContainer>
-      <ListItems show={show} handleClose={handleClose} />
+      {/* <MenuContainer>
+        <ListItems show={show} handleClose={handleClose} />
+      </MenuContainer> */}
     </Navigator>
   );
 };
