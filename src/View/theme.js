@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-import { theme as thematic } from "styled-theming";
 
 const theme = {
   primary: {
@@ -75,7 +74,7 @@ const Nav = styled.nav`
 `;
 
 const Ul = styled.ul`
-  display: ${(props) => (props.hide ? "flex" : "none")};
+  display: ${(props) => (props.show ? "flex" : "none")};
   flex-flow: column nowrap;
   padding: 0;
 `;
