@@ -75,7 +75,7 @@ const Nav = styled.nav`
 
 const Ul = styled.ul`
   display: ${(props) => (props.show ? "flex" : "none")};
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   padding: 0;
 `;
 
