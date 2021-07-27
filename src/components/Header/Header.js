@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Views/Navbar";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import { H1, Container } from "../../View/theme";
+import ListItems from "./Views/ListItems";
 
 const NavContainer = styled(Container)`
   display: flex;
@@ -12,7 +13,24 @@ const NavContainer = styled(Container)`
   padding: 0 1.5rem;
 `;
 
+const MenuContainer = styled(Container)`
+  background-color: transparent;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+`;
+
 export const Header = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClick = () => setShow(!show);
+
+  const handleClose = () => {
+    setTimeout(() => setShow(false), 2000);
+  };
   return (
     <NavContainer>
       <H1>
@@ -21,17 +39,10 @@ export const Header = () => {
         </Link>
       </H1>
 
-      <Navbar />
+      <Navbar show={show} handleClick={handleClick} />
+      <MenuContainer>
+        <ListItems show={show} handleClose={handleClose} />
+      </MenuContainer>
     </NavContainer>
   );
 };
-
-// useEffect(() => {
-//   const node = loadCSS(
-//     "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
-//     document.querySelector("#font-awesome-css")
-//   );
-//   return () => {
-//     node.parentNode.removeChild(node);
-//   };
-// }, []);
