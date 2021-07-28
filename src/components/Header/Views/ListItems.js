@@ -51,13 +51,13 @@ const NavBlock = styled(NavBlockTemplate)`
 `;
 
 const NavBlock2 = styled(NavBlockTemplate)`
-  /* animation: ${(props) =>
-    props.animate
+  animation: ${(props) =>
+    props.animateSecondBlock
       ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
             forwards;`
       : props.show
       ? css`2s ${fadeInFrame} forwards;`
-      : undefined}; */
+      : undefined};
 
   ${(second) =>
     second &&
@@ -142,7 +142,8 @@ const ListItems = ({
   useEffect(() => {
     console.log(` useEffect
     Show: ${show}
-    Animate: ${animate}
+    animateFirstBlock: ${animateFirstBlock}
+    animateSecondBlock: ${animateSecondBlock}
     Fade: ${fade}
     Slide In: ${slideIn}
     `);
@@ -155,7 +156,7 @@ const ListItems = ({
     e.target.parentElement === navBlockRef.current
       ? setAnimateFirstBlock(!animateFirstBlock)
       : setAnimateSecondBlock(!animateSecondBlock);
-    console.log(navBlockRef.current);
+    console.log(navBlock2Ref.current);
     setAnimate(!animate); // <- This starts animation
 
     setTimeout(() => {
@@ -178,7 +179,7 @@ const ListItems = ({
     setTimeout(() => {
       console.log(
         "animate === animateFirstBlock",
-        animate === animateFirstBlock
+        animate === animateSecondBlock
       );
       animate === animateFirstBlock
         ? setAnimateFirstBlock(!animateFirstBlock)
@@ -209,7 +210,6 @@ const ListItems = ({
       <NavBlock
         to="/"
         first={first}
-        animate={animate}
         animateFirstBlock={animateFirstBlock}
         show={show}
         ref={navBlockRef}
@@ -224,13 +224,14 @@ const ListItems = ({
       <NavBlock2
         to={`/${links[1].toLowerCase()}`}
         second={second}
-        animate={animate}
         animateSecondBlock={animateSecondBlock}
         show={show}
         ref={navBlock2Ref}
-        // onAnimationEnd={() => triggerOnSecondAnimation({ show, animate, fade })}
+        onAnimationEnd={() =>
+          triggerOnSecondAnimation({ show, fade }, animateSecondBlock)
+        }
       >
-        <NavBlockSpan rotation="45deg" /* onClick={() => scalingAnimation()} */>
+        <NavBlockSpan rotation="45deg" onClick={(e) => scalingAnimation(e)}>
           {links[1]}
         </NavBlockSpan>
       </NavBlock2>
