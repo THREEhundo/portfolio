@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
-import { NavBlocks, scaleUpTopLeft } from "../../../View/theme";
+import { NavBlocks, scaleUpTopLeft, fadeInFrame } from "../../../View/theme";
 
-// animate actual links
-// when navblocks is open links attrs to fullscreen
-// hide after
+// TODO [✅] ANIMATE NAVBLOCK OPACITY ANIMATION
+// TODO [] ANIMATE NAVBLOCK2 OPACITY ANIMATION
+// TODO [] ANIMATE NAVBLOCK3 OPACITY ANIMATION
+// TODO [] ANIMATE NAVBLOCK4 OPACITY ANIMATION
+// TODO [] STAGGER OPACITY ANIMATION
+// TODO [] ANIMATE CREATED FOR SECOND NAVBLOCK
 
-// initial values
-// animate
-// reset to initial values
-// visibility = hidden
+// TODO [✅] ANIMATION CREATED FOR FIRST NAVBLOCK
+// TODO [✅] RESET SHOW, ANIMATE, FADE STATES FOR FIRST NAVBLOCK
+// TODO [] ANIMATION CREATED FOR SECOND NAVBLOCK
+// TODO [] RESET SHOW, ANIMATE, FADE STATES FOR SECOND NAVBLOCK
+// TODO [] ANIMATION CREATED FOR THIRD NAVBLOCK
+// TODO [] RESET SHOW, ANIMATE, FADE STATES FOR THIRD NAVBLOCK
+// TODO [] ANIMATION CREATED FOR FOURTH NAVBLOCK
+// TODO [] RESET SHOW, ANIMATE, FADE STATES FOR FOURTH NAVBLOCK
 
-/* 
-  opacity: 1; 
-  z-index: 0;
-  transform: matrix(1, 0, 0, 1, 0, 0)
-  transform: matrix(2, 0, 0, 2, 0, 0)
-  cubic-bezier(0.23, 1, 0.32, 1)
-*/
-/* animate &&
-    css`
-      animation: 3s ${scaleUpTopLeft} cubic-bezier(0.39, 0.575, 0.565, 1)
-        forwards;
-    `} */
+/**
+ * OPEN MENU
+ * NAVBLOCK FADES
+ *
+ */
 const NavBlock = styled(Link)`
   position: absolute;
   width: 50%;
@@ -34,25 +34,22 @@ const NavBlock = styled(Link)`
   opacity: 1;
   z-index: 0;
   animation: ${(props) =>
-      props.animate
-        ? css`3s ${scaleUpTopLeft} cubic-bezier(0.39, 0.575, 0.565, 1)
+    props.animate
+      ? css`3s ${scaleUpTopLeft} cubic-bezier(0.39, 0.575, 0.565, 1)
             forwards;`
-        : undefined}
-    ${(first) =>
-      first &&
-      css`
-        top: 0;
-        left: 0;
-        background-color: #fff;
-        transform-origin: top left;
-      `};
-`;
+      : props.show
+      ? css`2s ${fadeInFrame} forwards;`
+      : undefined};
 
-/* animate &&
+  ${(first) =>
+    first &&
     css`
-      animation: 3s ${scaleUpTopLeft} cubic-bezier(0.39, 0.575, 0.565, 1)
-        forwards;
-    `} */
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      transform-origin: top left;
+    `};
+`;
 
 const NavBlock2 = styled(Link)`
   position: absolute;
@@ -112,40 +109,87 @@ const NavBlock4 = styled(Link)`
     `}
 `;
 
-const ListItems = ({ show, handleClose, first, second, third, fourth }) => {
+const ListItems = ({
+  show,
+  handleClick,
+  handleClose,
+  first,
+  second,
+  third,
+  fourth,
+}) => {
   const links = ["Home", "About", "Work", "Contact"];
   const [animate, setAnimate] = useState(false);
-  const startAnimationAndClose = () => {
-    setAnimate(!animate);
-    setTimeout(handleClose(), 500);
-    return console.log("Show: ", show);
+  const [fade, setFade] = useState(false);
+  const [slideIn, setSlideIn] = useState(false);
+
+  useEffect(() => {
+    console.log(` useEffect
+    Show: ${show}
+    Animate: ${animate}
+    Fade: ${fade}
+    Slide In: ${slideIn}
+    `);
+    // if (show) setSlideIn(true);
+    // if (!show) setSlideIn(false);
+  }, [show, animate, fade, slideIn]);
+
+  const startAnimationAndFade = () => {
+    const now = Date.now();
+    console.log(now);
+    setAnimate(!animate); // <- This starts animation
+
+    setTimeout(() => {
+      console.log("startAnimationAndFade", Date.now() - now);
+      return setFade(true); // <- fades opacity of link
+    }, 6000);
   };
 
+  const secondAnimation = ({ show, animate, fade }) => {
+    console.log({ show, animate, fade });
+    if (show && !animate && !fade) return;
+    else return showStopper();
+  };
+
+  const showStopper = () =>
+    setTimeout(() => {
+      setAnimate(!animate);
+      setFade(false);
+      handleClose();
+      console.log("States all false", Date.now());
+    }, 4500);
+
   return (
-    <NavBlocks show={show}>
-      <NavBlock to="/" first={first} animate={animate}>
-        <span onClick={() => startAnimationAndClose()}>{links[0]}</span>
+    <NavBlocks show={show} fade={fade}>
+      <NavBlock
+        to="/"
+        first={first}
+        animate={animate}
+        show={show}
+        onAnimationEnd={() => secondAnimation({ show, animate, fade })}
+      >
+        <span onClick={() => startAnimationAndFade()}>{links[0]}</span>
       </NavBlock>
       <NavBlock2
         to={`/${links[1].toLowerCase()}`}
         second={second}
-        animate={animate}
+        // animate={animate}
       >
-        <span onClick={() => startAnimationAndClose()}>{links[1]}</span>
+        <span /* onClick={() => startAnimationAndFade()} */>{links[1]}</span>
       </NavBlock2>
       <NavBlock3
         to={`/${links[2].toLowerCase()}`}
         third={third}
-        animate={animate}
+        // animate={animate}
       >
-        <span onClick={() => startAnimationAndClose()}>{links[2]}</span>
+        <span /* onClick={() => startAnimationAndFade()} */>{links[2]}</span>
       </NavBlock3>
       <NavBlock4
         to={`/${links[3].toLowerCase()}`}
         fourth={fourth}
-        animate={animate}
+        // animate={animate}
       >
-        <span onClick={() => startAnimationAndClose()}>{links[3]}</span>
+        <span /* onClick={() => startAnimationAndFade()} */>{links[3]}</span>
       </NavBlock4>
     </NavBlocks>
   );
