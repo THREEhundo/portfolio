@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { theme, Nav, Container } from "../../../View/theme";
-import ListItems from "./ListItems";
+// import ListItems from "./ListItems";
 import styled from "styled-components";
 
 const Navigator = styled(Nav)`
@@ -22,7 +22,6 @@ const NavbarContainer = styled(Container)`
 `;
 
 const NavMenu = styled.div`
-  /* opacity: ${(props) => (props.show ? 0 : 1)}; */
   animation: ${(props) =>
     props.show
       ? `slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both`
@@ -59,8 +58,6 @@ const NavMenu = styled.div`
 `;
 
 const NavClose = styled.div`
-  /* opacity: ${(props) => (props.show ? 0 : 1)}; */
-  /* opacity: 0; */
   animation: ${(props) =>
     props.show
       ? `slide-right-2 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both`
