@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
 import {
@@ -16,6 +16,7 @@ import {
 // TODO [] ANIMATE NAVBLOCK4 OPACITY ANIMATION
 // TODO [] STAGGER OPACITY ANIMATION
 // TODO [] ANIMATE CREATED FOR SECOND NAVBLOCK
+// TODO [] ANIMATE CREATED FOR SECOND NAVBLOCK
 
 // TODO [✅] ANIMATION CREATED FOR FIRST NAVBLOCK
 // TODO [✅] RESET SHOW, ANIMATE, FADE STATES FOR FIRST NAVBLOCK
@@ -28,7 +29,7 @@ import {
 
 const NavBlock = styled(NavBlockTemplate)`
   animation: ${(props) =>
-    props.animate
+    props.animateFirstBlock
       ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
             forwards;`
       : props.show
@@ -50,13 +51,13 @@ const NavBlock = styled(NavBlockTemplate)`
 `;
 
 const NavBlock2 = styled(NavBlockTemplate)`
-  animation: ${(props) =>
+  /* animation: ${(props) =>
     props.animate
       ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
             forwards;`
       : props.show
       ? css`2s ${fadeInFrame} forwards;`
-      : undefined};
+      : undefined}; */
 
   ${(second) =>
     second &&
@@ -131,6 +132,12 @@ const ListItems = ({
   const [animate, setAnimate] = useState(false);
   const [fade, setFade] = useState(false);
   const [slideIn, setSlideIn] = useState(false);
+  const [animateFirstBlock, setAnimateFirstBlock] = useState(false);
+  const [animateSecondBlock, setAnimateSecondBlock] = useState(false);
+  const navBlockRef = useRef(null);
+  const navBlock2Ref = useRef(null);
+  // const navBlock3Ref = useRef(null);
+  // const navBlock4Ref = useRef(null);
 
   useEffect(() => {
     console.log(` useEffect
@@ -139,34 +146,63 @@ const ListItems = ({
     Fade: ${fade}
     Slide In: ${slideIn}
     `);
+
     // if (show) setSlideIn(true);
     // if (!show) setSlideIn(false);
   }, [show, animate, fade, slideIn]);
 
-  const startAnimationAndFade = () => {
-    const now = Date.now();
-    console.log(now);
+  const scalingAnimation = (e) => {
+    e.target.parentElement === navBlockRef.current
+      ? setAnimateFirstBlock(!animateFirstBlock)
+      : setAnimateSecondBlock(!animateSecondBlock);
+    console.log(navBlockRef.current);
     setAnimate(!animate); // <- This starts animation
 
     setTimeout(() => {
-      console.log("startAnimationAndFade", Date.now() - now);
       return setFade(true); // <- fades opacity of link
     }, 6000);
   };
 
-  const secondAnimation = ({ show, animate, fade }) => {
-    console.log({ show, animate, fade });
-    if (show && !animate && !fade) return;
-    else return showStopper();
+  const triggerOnSecondAnimation = ({ show, fade }, animate) => {
+    console.log("triggerOnSecondAnimation", {
+      show,
+      animate,
+      fade,
+    });
+    // Only first animation has triggered
+    if (show && !fade && !animate) return;
+    else return resetAnimation({ animate });
   };
 
-  const showStopper = () =>
+  const resetAnimation = ({ animate }) =>
     setTimeout(() => {
-      setAnimate(!animate);
+      console.log(
+        "animate === animateFirstBlock",
+        animate === animateFirstBlock
+      );
+      animate === animateFirstBlock
+        ? setAnimateFirstBlock(!animateFirstBlock)
+        : setAnimateSecondBlock(!animateSecondBlock);
       setFade(false);
       handleClose();
+      console.log("animate passed down", animate);
       console.log("States all false", Date.now());
     }, 4500);
+  /**
+   * * ANIMATION BUG
+   * ! Animate == boolean state
+   * ! Animate added to both NavBlocks
+   * ! Both NavBlocks play out Animation
+   * TODO [] ANIMATE EACH NAVBLOCK INDIVIDUALLY
+   * ? Keep animate boolean ✅
+   * ? get ref in scalingAnimation of NavBlock ------
+   * ?
+   * ? add additional state for each NavBlock
+   * ? turn each state on and off based on click ref?
+   * ? seperate animation from each NavBlock, based on click trigger animation?
+   *
+   *
+   */
 
   return (
     <NavBlocks show={show} fade={fade}>
@@ -174,21 +210,27 @@ const ListItems = ({
         to="/"
         first={first}
         animate={animate}
+        animateFirstBlock={animateFirstBlock}
         show={show}
-        onAnimationEnd={() => secondAnimation({ show, animate, fade })}
+        ref={navBlockRef}
+        onAnimationEnd={() =>
+          triggerOnSecondAnimation({ show, fade }, animateFirstBlock)
+        }
       >
-        <NavBlockSpan rotation="-45deg" onClick={() => startAnimationAndFade()}>
+        <NavBlockSpan rotation="-45deg" onClick={(e) => scalingAnimation(e)}>
           {links[0]}
         </NavBlockSpan>
       </NavBlock>
       <NavBlock2
         to={`/${links[1].toLowerCase()}`}
         second={second}
-        // animate={animate}
+        animate={animate}
+        animateSecondBlock={animateSecondBlock}
+        show={show}
+        ref={navBlock2Ref}
+        // onAnimationEnd={() => triggerOnSecondAnimation({ show, animate, fade })}
       >
-        <NavBlockSpan
-          rotation="45deg" /* onClick={() => startAnimationAndFade()} */
-        >
+        <NavBlockSpan rotation="45deg" /* onClick={() => scalingAnimation()} */>
           {links[1]}
         </NavBlockSpan>
       </NavBlock2>
@@ -196,10 +238,9 @@ const ListItems = ({
         to={`/${links[2].toLowerCase()}`}
         third={third}
         // animate={animate}
+        // onAnimationEnd={() => triggerOnSecondAnimation({ show, animate, fade })}
       >
-        <NavBlockSpan
-          rotation="45deg" /* onClick={() => startAnimationAndFade()} */
-        >
+        <NavBlockSpan rotation="45deg" /* onClick={() => scalingAnimation()} */>
           {links[2]}
         </NavBlockSpan>
       </NavBlock3>
@@ -207,9 +248,10 @@ const ListItems = ({
         to={`/${links[3].toLowerCase()}`}
         fourth={fourth}
         // animate={animate}
+        // onAnimationEnd={() => triggerOnSecondAnimation({ show, animate, fade })}
       >
         <NavBlockSpan
-          rotation="-45deg" /* onClick={() => startAnimationAndFade()} */
+          rotation="-45deg" /* onClick={() => scalingAnimation()} */
         >
           {links[3]}
         </NavBlockSpan>
