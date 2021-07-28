@@ -1,4 +1,5 @@
-import styled from "styled-components/macro";
+import styled, { keyframes, css } from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 const theme = {
   primary: {
@@ -80,15 +81,81 @@ const NavBlocks = styled.div`
   width: 100%;
   position: relative;
   height: 100vh;
+  animation: ${(props) => (props.fade ? css`1s ${fadeOut} both` : undefined)};
+`;
+
+const NavBlockTemplate = styled(Link)`
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  z-index: 0;
+  font-size: ${theme.fontSize.md};
+  &:hover {
+    background-color: ${theme.backgroundColor.default};
+  }
+`;
+
+const NavBlockSpan = styled.span`
+  transform: rotate(${(props) => props.rotation});
 `;
 
 const Li = styled.div`
   list-style: none;
 `;
 
-const invertedTheme = ({ primary, secondary }) => ({
-  primary: secondary,
-  secondary: primary,
-});
+const scaleUp = keyframes`
 
-export { Container, H1, theme, Button, Nav, NavBlocks, Li, invertedTheme };
+  0% {
+            transform: scale(1);
+            z-index: 1;
+  }
+  /* 99% {
+            z-index: 1;
+  } */
+  100% {
+            transform: scale(2);
+            z-index: 1;
+}`;
+
+const fadeOut = keyframes`
+
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-1000px);
+  }
+`;
+
+const fadeInFrame = keyframes`
+
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+`;
+
+export {
+  Container,
+  H1,
+  theme,
+  Button,
+  Nav,
+  NavBlocks,
+  NavBlockTemplate,
+  NavBlockSpan,
+  Li,
+  scaleUp,
+  fadeOut,
+  fadeInFrame,
+};

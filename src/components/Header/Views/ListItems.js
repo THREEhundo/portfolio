@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components/macro";
-import { NavBlocks, scaleUpTopLeft, fadeInFrame } from "../../../View/theme";
+import {
+  theme,
+  NavBlocks,
+  scaleUp,
+  fadeInFrame,
+  NavBlockTemplate,
+  NavBlockSpan,
+} from "../../../View/theme";
 
 // TODO [✅] ANIMATE NAVBLOCK OPACITY ANIMATION
 // TODO [] ANIMATE NAVBLOCK2 OPACITY ANIMATION
@@ -19,23 +26,10 @@ import { NavBlocks, scaleUpTopLeft, fadeInFrame } from "../../../View/theme";
 // TODO [] ANIMATION CREATED FOR FOURTH NAVBLOCK
 // TODO [] RESET SHOW, ANIMATE, FADE STATES FOR FOURTH NAVBLOCK
 
-/**
- * OPEN MENU
- * NAVBLOCK FADES
- *
- */
-const NavBlock = styled(Link)`
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  z-index: 0;
+const NavBlock = styled(NavBlockTemplate)`
   animation: ${(props) =>
     props.animate
-      ? css`3s ${scaleUpTopLeft} cubic-bezier(0.39, 0.575, 0.565, 1)
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
             forwards;`
       : props.show
       ? css`2s ${fadeInFrame} forwards;`
@@ -46,31 +40,38 @@ const NavBlock = styled(Link)`
     css`
       top: 0;
       left: 0;
-      background-color: #fff;
       transform-origin: top left;
+      color: ${theme.color.black};
+      background-color: ${theme.primary.main};
+      &:hover {
+        color: ${theme.primary.main};
+      }
     `};
 `;
 
-const NavBlock2 = styled(Link)`
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  z-index: 0;
+const NavBlock2 = styled(NavBlockTemplate)`
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
+            forwards;`
+      : props.show
+      ? css`2s ${fadeInFrame} forwards;`
+      : undefined};
 
   ${(second) =>
     second &&
     css`
       top: 0;
       right: 0;
-      background-color: red;
-      transform-origin: "top right";
+      transform-origin: top right;
+      color: ${theme.color.white};
+      background-color: ${theme.secondary.main};
+      &:hover {
+        color: ${theme.secondary.main};
+      }
     `}
 `;
-const NavBlock3 = styled(Link)`
+const NavBlock3 = styled(NavBlockTemplate)`
   position: absolute;
   width: 50%;
   height: 50%;
@@ -85,12 +86,16 @@ const NavBlock3 = styled(Link)`
     css`
       bottom: 0;
       left: 0;
-      background-color: blue;
       transform-origin: bottom left;
+      color: ${theme.color.white};
+      background-color: ${theme.secondary.light};
+      &:hover {
+        color: ${theme.secondary.light};
+      }
     `}
 `;
 
-const NavBlock4 = styled(Link)`
+const NavBlock4 = styled(NavBlockTemplate)`
   position: absolute;
   width: 50%;
   height: 50%;
@@ -104,8 +109,12 @@ const NavBlock4 = styled(Link)`
     css`
       bottom: 0;
       right: 0;
-      background-color: yellow;
       transformorigin: bottom right;
+      color: ${theme.color.black};
+      background-color: ${theme.primary.light};
+      &:hover {
+        color: ${theme.primary.light};
+      }
     `}
 `;
 
@@ -168,28 +177,42 @@ const ListItems = ({
         show={show}
         onAnimationEnd={() => secondAnimation({ show, animate, fade })}
       >
-        <span onClick={() => startAnimationAndFade()}>{links[0]}</span>
+        <NavBlockSpan rotation="-45deg" onClick={() => startAnimationAndFade()}>
+          {links[0]}
+        </NavBlockSpan>
       </NavBlock>
       <NavBlock2
         to={`/${links[1].toLowerCase()}`}
         second={second}
         // animate={animate}
       >
-        <span /* onClick={() => startAnimationAndFade()} */>{links[1]}</span>
+        <NavBlockSpan
+          rotation="45deg" /* onClick={() => startAnimationAndFade()} */
+        >
+          {links[1]}
+        </NavBlockSpan>
       </NavBlock2>
       <NavBlock3
         to={`/${links[2].toLowerCase()}`}
         third={third}
         // animate={animate}
       >
-        <span /* onClick={() => startAnimationAndFade()} */>{links[2]}</span>
+        <NavBlockSpan
+          rotation="45deg" /* onClick={() => startAnimationAndFade()} */
+        >
+          {links[2]}
+        </NavBlockSpan>
       </NavBlock3>
       <NavBlock4
         to={`/${links[3].toLowerCase()}`}
         fourth={fourth}
         // animate={animate}
       >
-        <span /* onClick={() => startAnimationAndFade()} */>{links[3]}</span>
+        <NavBlockSpan
+          rotation="-45deg" /* onClick={() => startAnimationAndFade()} */
+        >
+          {links[3]}
+        </NavBlockSpan>
       </NavBlock4>
     </NavBlocks>
   );

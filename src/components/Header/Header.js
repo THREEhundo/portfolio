@@ -28,9 +28,7 @@ export const Header = () => {
 
   const handleClick = () => setShow(!show);
 
-  const handleClose = () => {
-    setTimeout(() => setShow(false), 2000);
-  };
+  const handleClose = () => setShow(false);
   return (
     <NavContainer>
       <H1>
@@ -41,7 +39,11 @@ export const Header = () => {
 
       <Navbar show={show} handleClick={handleClick} />
       <MenuContainer>
-        <ListItems show={show} handleClose={handleClose} />
+        <ListItems
+          show={show}
+          handleClick={handleClick}
+          handleClose={handleClose}
+        />
       </MenuContainer>
     </NavContainer>
   );

@@ -1,70 +1,38 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
+import { scaleUpTopLeft } from "./src/View/theme";
 
-const first = {
-  top: 0,
-  left: 0,
-  background: "#fff",
-  transformOrigin: "top left",
-};
-const second = {
-  top: 0,
-  left: 0,
-  background: "red",
-  transformOrigin: "top right",
-};
-const third = {
-  bottom: 0,
-  left: 0,
-  background: "blue",
-  transformOrigin: "bottom left",
-};
-
-const fourth = {
-  bottom: 0,
-  right: 0,
-  background: "yellow",
-  transformOrigin: "bottom right",
-};
-
-const NavBlock = styled(Link).attrs((props) => ({
-  top: (props) => props.obj.top || "initial",
-  bottom: (props) => props.obj.bottom || "initial",
-  left: (props) => props.obj.left || "initial",
-  right: (props) => props.obj.right || "initial",
-  background: (props) => props.obj.background,
-  transformOrigin: (props) => props.obj.transformOrigin,
-}))`
+const NavBlock = styled(Link)`
   position: absolute;
   width: 50%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-const nb = (
-  <NavBlock
-    top={first.top}
-    left={first.left}
-    background={first.background}
-    transformOrigin={first.transformOrigin}
-  ></NavBlock>
-);
-const numb = [1, 2, 3, 4];
+  opacity: 1;
+  z-index: 0;
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUpTopLeft} cubic-bezier(0.39, 0.575, 0.565, 1)
+            forwards;`
+      : undefined};
 
-const test = (arr) => {
-  console.log(arr);
-  return (
-    <NavBlock
-      top={first.top}
-      left={first.left}
-      background={first.background}
-      transformOrigin={first.transformOrigin}
-    ></NavBlock>
-  );
+  ${(first) =>
+    first &&
+    css`
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      transform-origin: top left;
+    `};
+`;
+
+const Test = () => {
+  const [animate, setAnimate] = useState(false);
+  return <NavBlock animate={animate}>Hi</NavBlock>;
 };
 
-console.log(test(numb));
+console.log(Test);
 
-export default test;
+export default Test;
