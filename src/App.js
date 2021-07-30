@@ -24,17 +24,11 @@ function App() {
       <Container>
         <Header />
         <Switch>
-          <Route exact path="/about">
-            <About id="about" />
-          </Route>
+          <Route exact path="/about" component={About} />
 
-          <Route exact path="/work">
-            <Work id="work" />
-          </Route>
+          <Route exact path="/work" component={Work} />
 
-          <Route exact path="/contact">
-            <ContactEmail />
-          </Route>
+          <Route exact path="/contact" component={ContactEmail} />
         </Switch>
       </Container>
     </Router>

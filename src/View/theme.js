@@ -1,5 +1,7 @@
 import styled, { keyframes, css } from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { LinkWithRouteAndRef } from "../components/Header/Views/StyledLink";
+import { NavContainer } from "../components/Header/Views/NavContainer";
+import { NavSpan } from "../components/Header/Views/NavSpan";
 
 const theme = {
   primary: {
@@ -73,8 +75,7 @@ const Nav = styled.nav`
   display: flex;
   flex-flow: column nowrap;
 `;
-
-const NavBlocks = styled.div`
+const NavBlocks = styled(NavContainer)`
   visibility: ${(props) => (props.show ? "inherit" : "hidden")};
   flex-flow: column wrap;
   padding: 0;
@@ -84,22 +85,113 @@ const NavBlocks = styled.div`
   animation: ${(props) => (props.fade ? css`1s ${fadeOut} both` : undefined)};
 `;
 
-const NavBlockTemplate = styled(Link)`
+const NavBlockTemplate = styled(LinkWithRouteAndRef)`
   position: absolute;
   width: 50%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 1;
+  opacity: 0;
   z-index: 0;
   font-size: ${theme.fontSize.md};
   &:hover {
     background-color: ${theme.backgroundColor.default};
   }
 `;
+const NavBlock = styled(NavBlockTemplate)`
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
+            forwards;`
+      : props.show
+      ? css`1s ${fadeInFrame} forwards;`
+      : undefined};
 
-const NavBlockSpan = styled.span`
+  ${(first) =>
+    first &&
+    css`
+      top: 0;
+      left: 0;
+      transform-origin: top left;
+      color: ${theme.color.black};
+      background-color: ${theme.primary.main};
+      &:hover {
+        color: ${theme.primary.main};
+      }
+    `};
+`;
+
+const NavBlock2 = styled(NavBlockTemplate)`
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
+            forwards;`
+      : props.show
+      ? css`1s ${fadeInFrame} 0.2s forwards;`
+      : undefined};
+
+  ${(second) =>
+    second &&
+    css`
+      top: 0;
+      right: 0;
+      transform-origin: top right;
+      color: ${theme.color.white};
+      background-color: ${theme.secondary.main};
+      &:hover {
+        color: ${theme.secondary.main};
+      }
+    `}
+`;
+
+const NavBlock3 = styled(NavBlockTemplate)`
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
+            forwards;`
+      : props.show
+      ? css`1s ${fadeInFrame} 0.4s forwards;`
+      : undefined};
+
+  ${(third) =>
+    third &&
+    css`
+      bottom: 0;
+      left: 0;
+      transform-origin: bottom left;
+      color: ${theme.color.white};
+      background-color: ${theme.secondary.light};
+      &:hover {
+        color: ${theme.secondary.light};
+      }
+    `}
+`;
+
+const NavBlock4 = styled(NavBlockTemplate)`
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
+            both;`
+      : props.show
+      ? css`1s ${fadeInFrame} 0.6s forwards;`
+      : undefined};
+
+  ${(fourth) =>
+    fourth &&
+    css`
+      bottom: 0;
+      right: 0;
+      transform-origin: bottom right;
+      color: ${theme.color.black};
+      background-color: ${theme.primary.light};
+      &:hover {
+        color: ${theme.primary.light};
+      }
+    `}
+`;
+
+const NavBlockSpan = styled(NavSpan)`
   transform: rotate(${(props) => props.rotation});
 `;
 
@@ -112,13 +204,13 @@ const scaleUp = keyframes`
   0% {
             transform: scale(1);
             z-index: 1;
+            opacity: 1;
   }
-  /* 99% {
-            z-index: 1;
-  } */
+
   100% {
             transform: scale(2);
             z-index: 1;
+            opacity: 1;
 }`;
 
 const fadeOut = keyframes`
@@ -158,4 +250,8 @@ export {
   scaleUp,
   fadeOut,
   fadeInFrame,
+  NavBlock,
+  NavBlock2,
+  NavBlock3,
+  NavBlock4,
 };
