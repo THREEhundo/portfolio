@@ -193,24 +193,60 @@ const NavBlock4 = styled(NavBlockTemplate)`
 
 const NavBlockSpan = styled(NavSpan)`
   transform: rotate(${(props) => props.rotation});
+  animation: ${(props) =>
+    props.animate && props.rotation === "-45deg"
+      ? css`
+          ${rotateClockwise} 3s;
+        `
+      : props.animate && props.rotation === "45deg"
+      ? css`
+          ${rotateCounterClockwise} 3s;
+        `
+      : undefined};
+  animation-fill-mode: forwards;
+`;
+
+const BigLink = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const Li = styled.div`
   list-style: none;
 `;
 
+const rotateClockwise = keyframes`
+  0% {
+    transform: rotate(-45deg);
+    
+  }
+  100% {
+    transform: rotate(0);
+    
+  }
+`;
+
+const rotateCounterClockwise = keyframes`
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+`;
+
 const scaleUp = keyframes`
 
   0% {
-            transform: scale(1);
-            z-index: 1;
-            opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+    opacity: 1;
   }
 
   100% {
-            transform: scale(2);
-            z-index: 1;
-            opacity: 1;
+    transform: scale(2);
+    z-index: 1;
+    opacity: 1;
 }`;
 
 const fadeOut = keyframes`
@@ -246,6 +282,7 @@ export {
   NavBlocks,
   NavBlockTemplate,
   NavBlockSpan,
+  BigLink,
   Li,
   scaleUp,
   fadeOut,

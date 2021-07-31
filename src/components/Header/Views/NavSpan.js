@@ -4,9 +4,6 @@ export const NavSpan = ({
   rotation,
   scaleAndFadeAnimation,
   children,
+  animate,
   ...props
-}) => (
-  <span rotation={rotation} {...props}>
-    {children}
-  </span>
-);
+}) => <span {...props}>{children}</span>;
