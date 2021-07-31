@@ -32,7 +32,7 @@ export const Header = () => {
   return (
     <NavContainer>
       <H1>
-        <Link to="/">
+        <Link to="/" replace>
           <span>SB</span>
         </Link>
       </H1>
