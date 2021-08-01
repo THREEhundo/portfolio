@@ -85,110 +85,34 @@ const NavBlocks = styled(NavContainer)`
   animation: ${(props) => (props.fade ? css`1s ${fadeOut} both` : undefined)};
 `;
 
-const NavBlockTemplate = styled(LinkWithRouteAndRef)`
+const Block = styled(LinkWithRouteAndRef)`
   position: absolute;
   width: 50%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+  opacity: 1;
   z-index: 0;
   font-size: ${theme.fontSize.md};
+  animation: ${(props) =>
+    props.animate
+      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
+            forwards;`
+      : props.show
+      ? css`1s ${fadeInFrame} ${props.delay} both;`
+      : undefined};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  right: ${(props) => props.right};
+  left: ${(props) => props.left};
+  transform-origin: ${(props) => props.transformOrigin};
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.backgroundColor};
   &:hover {
     background-color: ${theme.backgroundColor.default};
+    color: ${(props) => props.hoverColor};
   }
-`;
-const NavBlock = styled(NavBlockTemplate)`
-  animation: ${(props) =>
-    props.animate
-      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
-            forwards;`
-      : props.show
-      ? css`1s ${fadeInFrame} forwards;`
-      : undefined};
-
-  ${(first) =>
-    first &&
-    css`
-      top: 0;
-      left: 0;
-      transform-origin: top left;
-      color: ${theme.color.black};
-      background-color: ${theme.primary.main};
-      &:hover {
-        color: ${theme.primary.main};
-      }
-    `};
-`;
-
-const NavBlock2 = styled(NavBlockTemplate)`
-  animation: ${(props) =>
-    props.animate
-      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
-            forwards;`
-      : props.show
-      ? css`1s ${fadeInFrame} 0.2s forwards;`
-      : undefined};
-
-  ${(second) =>
-    second &&
-    css`
-      top: 0;
-      right: 0;
-      transform-origin: top right;
-      color: ${theme.color.white};
-      background-color: ${theme.secondary.main};
-      &:hover {
-        color: ${theme.secondary.main};
-      }
-    `}
-`;
-
-const NavBlock3 = styled(NavBlockTemplate)`
-  animation: ${(props) =>
-    props.animate
-      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
-            forwards;`
-      : props.show
-      ? css`1s ${fadeInFrame} 0.4s forwards;`
-      : undefined};
-
-  ${(third) =>
-    third &&
-    css`
-      bottom: 0;
-      left: 0;
-      transform-origin: bottom left;
-      color: ${theme.color.white};
-      background-color: ${theme.secondary.light};
-      &:hover {
-        color: ${theme.secondary.light};
-      }
-    `}
-`;
-
-const NavBlock4 = styled(NavBlockTemplate)`
-  animation: ${(props) =>
-    props.animate
-      ? css`3s ${scaleUp} cubic-bezier(0.39, 0.575, 0.565, 1)
-            both;`
-      : props.show
-      ? css`1s ${fadeInFrame} 0.6s forwards;`
-      : undefined};
-
-  ${(fourth) =>
-    fourth &&
-    css`
-      bottom: 0;
-      right: 0;
-      transform-origin: bottom right;
-      color: ${theme.color.black};
-      background-color: ${theme.primary.light};
-      &:hover {
-        color: ${theme.primary.light};
-      }
-    `}
 `;
 
 const NavBlockSpan = styled(NavSpan)`
@@ -280,15 +204,11 @@ export {
   Button,
   Nav,
   NavBlocks,
-  NavBlockTemplate,
   NavBlockSpan,
   BigLink,
   Li,
   scaleUp,
   fadeOut,
   fadeInFrame,
-  NavBlock,
-  NavBlock2,
-  NavBlock3,
-  NavBlock4,
+  Block,
 };

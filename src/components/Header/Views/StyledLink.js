@@ -12,13 +12,38 @@ const withRouterForwardRef = (Component) => {
 };
 
 const StyledLink = forwardRef(
-  ({ show, fade, children, animate, staticContext, ...props }, ref) => {
+  (
+    {
+      to,
+      show,
+      fade,
+      children,
+      animate,
+      staticContext,
+      top,
+      bottom,
+      left,
+      right,
+      transformOrigin,
+      backgroundColor,
+      hoverColor,
+      ...props
+    },
+    ref
+  ) => {
     return (
-      <Link {...props} ref={ref}>
+      <Link to={to} ref={ref} {...props}>
         {children}
       </Link>
     );
   }
 );
+
+StyledLink.defaultProps = {
+  top: null,
+  bottom: null,
+  left: null,
+  right: null,
+};
 
 export const LinkWithRouteAndRef = withRouterForwardRef(StyledLink);
