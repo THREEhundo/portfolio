@@ -30,25 +30,45 @@ const NavMenu = styled.div`
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  animation: ${(props) =>
-    props.show
+  /* animation: ${(props) =>
+    props.show && props.startAnimationCycle
       ? css`
           ${slideLeftHide} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
         `
       : css`
           ${slideRightShow} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
-        `};
+        `}; */
+  animation: ${(props) =>
+    props.show && !props.startAnimationCycle
+      ? undefined
+      : props.show && props.startAnimationCycle
+      ? css`
+          ${slideLeftHide} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+        `
+      : !props.show && props.startAnimationCycle
+      ? css`
+          ${slideRightShow} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+        `
+      : undefined};
 `;
 
-const NavClose = styled.div`
+const NavButton = ({ className, show, ...props }) => (
+  <div className={className} {...props}></div>
+);
+
+const NavClose = styled(NavButton)`
   animation: ${(props) =>
-    props.show
+    props.show && !props.startAnimationCycle
+      ? undefined
+      : props.show && props.startAnimationCycle
       ? css`
           ${slideRightShow} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
         `
-      : css`
+      : !props.show && props.startAnimationCycle
+      ? css`
           ${slideLeftHide} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
-        `};
+        `
+      : undefined};
   position: absolute;
   top: 0;
   left: 0;
@@ -56,6 +76,7 @@ const NavClose = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  opacity: ${(props) => (props.startAnimationCycle ? 1 : 0)};
 `;
 
 const slideLeftHide = keyframes`
@@ -91,16 +112,21 @@ const NavX = styled(NavSpan)`
   position: absolute;
 `;
 
-const Navbar = ({ show, handleClick }) => {
+const Navbar = ({ show, handleClick, startAnimationCycle }) => {
+  const addAnimation = () => {
+    // add in animation on first click
+    // send as class?
+  };
+
   return (
     <Navigator>
       <NavbarContainer onClick={() => handleClick()}>
-        <NavMenu show={show}>
+        <NavMenu show={show} startAnimationCycle={startAnimationCycle}>
           <NavSpan />
           <NavSpan />
           <NavSpan />
         </NavMenu>
-        <NavClose show={show}>
+        <NavClose show={show} startAnimationCycle={startAnimationCycle}>
           <NavX left />
           <NavX />
         </NavClose>

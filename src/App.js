@@ -14,9 +14,15 @@ import { ContactEmail } from "./components/Email/ContactEmail";
 //  TODO [✅] color
 //  TODO [✅] width
 //  TODO [✅] height
+// TODO [✅] Style Navbar
+//  TODO [] Create Global Style
+//  TODO [] stop animation onload
+// close -> first animation opacity 0
+// pass loading state to close component
+// open -> stop animation
+// open onClick -> add animation
 
 // TODO [] Setup Splash page
-// TODO [] Style Navbar
 
 function App() {
   return (

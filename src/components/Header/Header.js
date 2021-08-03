@@ -25,8 +25,12 @@ const MenuContainer = styled(Container)`
 
 export const Header = () => {
   const [show, setShow] = useState(false);
+  const [startAnimationCycle, setStartAnimationCycle] = useState(false);
 
-  const handleClick = () => setShow(!show);
+  const handleClick = () => {
+    setShow(!show);
+    return setStartAnimationCycle(true);
+  };
 
   const handleClose = () => setShow(false);
   return (
@@ -37,7 +41,11 @@ export const Header = () => {
         </Link>
       </H1>
 
-      <Navbar show={show} handleClick={handleClick} />
+      <Navbar
+        show={show}
+        handleClick={handleClick}
+        startAnimationCycle={startAnimationCycle}
+      />
       <MenuContainer>
         <ListItems
           show={show}
